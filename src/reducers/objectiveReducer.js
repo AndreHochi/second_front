@@ -1,7 +1,10 @@
 const initalState = {
     objectives: {},
     links: {},
-    timers: {}
+    timers: {},
+    sound: false,
+    currentTimer: {},
+    currentDrop: "",
 }
 
 const objectiveReducer = (state = initalState, action) => {
@@ -20,6 +23,31 @@ const objectiveReducer = (state = initalState, action) => {
             return {
                 ...state,
                 timers: action.timers
+            }
+        case 'SOUND':
+            return {
+                ...state,
+                sound: action.sound
+            }
+        case 'CURRENTDROP':
+            return {
+                ...state,
+                currentDrop: action.currentDrop
+            }
+        case 'CURRENTTIMER':
+            return {
+                ...state,
+                currentTimer: action.currentTimer
+            }
+        case 'NEWOBJS':
+            return {
+                ...state,
+                objectives: state.objectives.concat(action.objective)
+            }
+        case 'NEWOBJS':
+            return {
+                ...state,
+                links: state.links.concat(action.link)
             }
         case 'OBJECTIVE_DEFAULT':
             return initalState

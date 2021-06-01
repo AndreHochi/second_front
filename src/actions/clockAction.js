@@ -1,5 +1,3 @@
-
-
 const tick = ({ interval }) => {
     return {
         type: 'TICK',
@@ -10,7 +8,7 @@ const tick = ({ interval }) => {
 
 
 export const startTimer = (dispatch) => {
-        
+
     dispatch({
         type: 'TICK'
     });
@@ -19,6 +17,8 @@ export const startTimer = (dispatch) => {
 
     const interval = setInterval(() => {
         dispatch(tick({ interval }))
+        // dispatch()
     }, 1000)
+
 
 }

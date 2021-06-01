@@ -21,7 +21,8 @@ export const fetchLogin = (toggle, e, dispatch, history) => {
             .then((res) => res.json())
             .then((data) => {
                 localStorage.setItem("token", data.token)
-                data.token === "Incorrect name or password" ? dispatch({ type: 'FOOL' }) : dispatch({ type: 'GET_LOGIN', username: data.name })
+                data.token === "Incorrect name or password" ? dispatch({ type: 'FOOL' }) : dispatch({ type: 'GET_LOGIN', username: data.user.name })
+                console.log(data)
             })
             // .then(() => localStorage.token === "Incorrect name or password" ? null : fetchObjectives(dispatch))
             // .then(() => localStorage.token === "Incorrect name or password" ? null : fetchLinks(dispatch))
@@ -41,7 +42,7 @@ export const fetchLogin = (toggle, e, dispatch, history) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json",
+                "Accept": "application/json",
             },
             body: JSON.stringify(user),
         };
@@ -53,4 +54,34 @@ export const fetchLogin = (toggle, e, dispatch, history) => {
             })
 
     }
+}
+
+export const editUserAction = (e, dispatch, history) => {
+
+    e.preventDefault()
+
+    let user = {
+        name: e.target[0].value,
+        password: e.target[1].value,
+    };
+
+    let reqPackage = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(user),
+    };
+
+    fetch("http://localhost:3000/api/v1/updateUser", reqPackage)
+        .then(() => {
+            dispatch({ type: "LOGIN_DEFAULT" })
+            dispatch({ type: "CLOCK_DEFAULT" })
+            dispatch({ type: "OBJECTIVE_DEFAULT" })
+            history.push("/")
+            localStorage.clear()
+        })
+
 }

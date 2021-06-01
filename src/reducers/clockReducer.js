@@ -4,7 +4,7 @@ const initialState = {
 }
 
 const clockReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'TICK':
       return {
         ...state,

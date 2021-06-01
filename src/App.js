@@ -8,7 +8,7 @@ function App() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {startTimer(dispatch)})
+  useEffect(() => { startTimer(dispatch) })
   //might need useHistory placed here and passed to Routes
   return (
     <div className="App">
