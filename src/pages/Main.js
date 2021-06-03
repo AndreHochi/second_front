@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { signoutAction } from '../actions/signoutAction'
+import { deleteUserAction } from '../actions/deleteUserAction'
 import { CardContainer } from '../containers/CardContainer'
 import { fetchObjectives, fetchLinks } from '../actions/objectiveAction'
 import store from '../store'
@@ -8,22 +9,7 @@ import store from '../store'
 const Main = (props) => {
 
     const cStates = useSelector(reducer => reducer.clockState)
-    // const oStates = useSelector(reducer => reducer.objectiveState)
     const dispatch = useDispatch()
-
-    // let dayToMili = 86400000
-    // let hourToMili = 3600000
-    // let minuteToMili = 60000
-    // let secondToMili = 1000
-
-    // let remainingtime_s = Math.abs(cStates.time - new Date(2021, 4, 26, 0, 0, 0))
-    // let days = Math.floor(remainingtime_s / dayToMili)
-    // let remainingtime = remainingtime_s % dayToMili
-    // let hours = Math.floor(remainingtime / hourToMili)
-    // remainingtime = remainingtime % hourToMili
-    // let minutes = Math.floor(remainingtime / minuteToMili)
-    // remainingtime = remainingtime % minuteToMili
-    // let seconds = Math.floor(remainingtime / secondToMili)
 
     useEffect(() => {
         if (localStorage.token) {
@@ -36,6 +22,8 @@ const Main = (props) => {
         <div className='App-front'>
             {/* move buttons to a header object  */}
             <button onClick={() => signoutAction(dispatch, props.history)}>Sign Out</button>
+            <button onClick={() => deleteUserAction(dispatch, props.history)}>Delete User</button>
+
             <button onClick={() => props.history.push("/editUser")}>Edit User</button>
 
             {/* REDO CARD CONTAINER AFTER DOING TIMER OBJECTS */}
@@ -44,6 +32,8 @@ const Main = (props) => {
             {/* {playSound ? this.} */}
             <p>{cStates.time.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })}</p>
             <button onClick={(e) => props.history.push("/createObjective")}>Create Objectives</button>
+            <button onClick={(e) => props.history.push("/deleteObjective")}>Delete Objectives</button>
+            <button onClick={(e) => props.history.push("/editObjective")}>Edit Objectives</button>
 
         </div>
     )

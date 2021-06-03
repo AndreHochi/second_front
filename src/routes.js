@@ -4,7 +4,7 @@ import Main from "./pages/Main"
 import EditObj from "./pages/EditObj"
 import Create from "./pages/Create"
 import EditUser from './pages/EditUser'
-
+import DeleteObj from './pages/DeleteObj'
 
 const Routes = (props) => {
     return (
@@ -16,6 +16,7 @@ const Routes = (props) => {
                     <Route path='/editObjective' exact component={(props) => <EditObj {...props} />} />
                     <Route path='/createObjective' exact component={(props) => <Create {...props} />} />
                     <Route path='/editUser' exact component={(props) => <EditUser {...props} />} />
+                    <Route path='/deleteObjective' exact component={(props) => <DeleteObj {...props} />} />
                 </Switch>
             </Router>
         </>

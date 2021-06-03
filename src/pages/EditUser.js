@@ -18,6 +18,8 @@ const EditUser = (props) => {
                 <br />
                 <input type="submit" value="Submit" />
             </form>
+            <button onClick={(e) => props.history.push("/main")}>Return to Main</button>
+
         </div>
     )
 }
